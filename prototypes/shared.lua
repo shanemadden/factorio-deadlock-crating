@@ -14,7 +14,7 @@ DCM.TAB_TIERS = DCM.TIERS + 1
 
 -- which items can be crated, in which tier
 DCM.ITEM_TIER = {
-	[1] = { "raw-wood", "iron-ore", "copper-ore", "stone", "coal", "iron-plate", "copper-plate", "steel-plate", "stone-brick" },
+	[1] = { "wood", "iron-ore", "copper-ore", "stone", "coal", "iron-plate", "copper-plate", "steel-plate", "stone-brick" },
 	[2] = { "copper-cable", "iron-gear-wheel", "iron-stick", "sulfur", "plastic-bar", "solid-fuel", "electronic-circuit", "advanced-circuit" },
 	[3] = { "processing-unit", "battery", "uranium-ore", "uranium-235", "uranium-238" },
 }
@@ -84,7 +84,7 @@ function DCM.generate_crates(this_item, subgroup, icon_size)
             allow_decomposition = false,
             icons = icons,
             icon_size = icon_size, 
-            flags = { "goes-to-main-inventory" },
+            flags = {},
         },
 		-- The packing recipe
 		{
