@@ -1,0 +1,31 @@
+{
+  "entity":
+  [
+    ["deadlock-machine-packer-entity", "deadlock-machine-packer-entity-1"]
+  ],
+  "item":
+  [
+    ["deadlock-machine-packer-item", "deadlock-machine-packer-item-1"],
+    ["deadlock-packed-iron-plate", "deadlock-crate-iron-plate"],
+    ["deadlock-packed-copper-plate", "deadlock-crate-copper-plate"],
+    ["deadlock-packed-steel-plate", "deadlock-crate-steel-plate"],
+    ["deadlock-packed-stone-brick", "deadlock-crate-stone-brick"],
+    ["deadlock-packed-plastic-bar", "deadlock-crate-plastic-bar"],
+    ["deadlock-packed-copper-cable", "deadlock-crate-copper-cable"],
+    ["deadlock-packed-iron-gear-wheel", "deadlock-crate-iron-gear-wheel"],
+    ["deadlock-packed-iron-ore", "deadlock-crate-iron-ore"],
+    ["deadlock-packed-copper-ore", "deadlock-crate-copper-ore"],
+    ["deadlock-packed-coal", "deadlock-crate-coal"],
+    ["deadlock-packed-stone", "deadlock-crate-stone"],
+    ["deadlock-packed-raw-wood", "deadlock-crate-raw-wood"],
+    ["deadlock-packed-sulfur", "deadlock-crate-sulfur"],
+    ["deadlock-packed-electronic-circuit", "deadlock-crate-electronic-circuit"],
+    ["deadlock-packed-advanced-circuit", "deadlock-crate-advanced-circuit"],
+    ["deadlock-packed-processing-unit", "deadlock-crate-processing-unit"],
+    ["deadlock-packed-battery", "deadlock-crate-battery"],
+    ["deadlock-packed-solid-fuel", "deadlock-crate-solid-fuel"],
+    ["deadlock-packed-uranium-ore", "deadlock-crate-uranium-ore"],
+    ["deadlock-packed-uranium-235", "deadlock-crate-uranium-235"],
+    ["deadlock-packed-uranium-238", "deadlock-crate-uranium-238"]
+  ]
+}

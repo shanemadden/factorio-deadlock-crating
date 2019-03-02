@@ -1,0 +1,127 @@
+---------------------------------------------------------------------------------------------------
+Version: 1.3.0
+Date: 10. 05. 2018
+  Meta:
+    - This is the final version for Factorio 0.16.
+  Bugfixes:
+    - Corrected a "senior moment" which was causing crated items to have an incorrect stack size.
+---------------------------------------------------------------------------------------------------
+Version: 1.2.2
+Date: 04. 04. 2018
+  Changes:
+    - Removed logging options. Modders: if you need these, you can edit the value in shared.lua.
+---------------------------------------------------------------------------------------------------
+Version: 1.2.1
+Date: 30. 03. 2018
+  Changes:
+    - Crating/uncrating activities are no longer included in production statistics.
+    - This can't be a retroactive change so you will still see crate production stats in the past.
+---------------------------------------------------------------------------------------------------
+Version: 1.2.0
+Date: 28. 03. 2018
+  Changes:
+    - Made the internal structure of the mod properly modular, reducing variable/function scope.
+---------------------------------------------------------------------------------------------------
+Version: 1.1.5
+Date: 24. 03. 2018
+  Changes:
+    - Players can now pack and unpack crates by hand, due to new support in the game for avoiding circular recipes.
+    - Simplified the crate inventory tab to try and minimise space used. Machines are now found on the Production tab.
+    - Removed an unnecessary layer from crate icons to lessen the rendering effort needed for crates on belts.
+  Inter-mod support:
+    - Items from other mods with icon sizes of 64 and 128 are now supported. See modding readme.
+    - Added a verbose logging option to mod settings so you can see what DCM is doing with your itamz.
+---------------------------------------------------------------------------------------------------
+Version: 1.1.4
+Date: 13. 03. 2018
+  Bugfixes:
+    - Fixed a potentially breaking change in 0.16.29 to do with the new fuel emission multiplier.
+    - To prevent this kind of thing happening again, crate items are now generated "from scratch" instead of copying base item properties.
+---------------------------------------------------------------------------------------------------
+Version: 1.1.3
+Date: 04. 03. 2018
+  Inter-mod support:
+    - Added two new functions for modders.
+    - deadlock_crating.remove(string) will search DCM's native technologies for any recipe unlocks with a matching substring and remove them.
+    - deadlock_crating.reset() will clear all crating recipes from all DCM technologies, leaving only the machine unlocks.
+    - See the modding readme for more details.
+  Bugfixes:
+    - Addressed a global variable pollution issue.
+    - If external mods use .create() to add to one of the native DCM technologies, the recipe now appears in the correct subgroup in the crafting tab.
+---------------------------------------------------------------------------------------------------
+Version: 1.1.2
+Date: 17. 02. 2018
+  Inter-mod support:
+    - If a technology already specifies unlock effects for a stacked item, those effects are replaced instead of duplicated.
+    - Items from other mods which only specify layered icons are now handled automatically.
+---------------------------------------------------------------------------------------------------
+Version: 1.1.1
+Date: 11. 02. 2018
+  Bugfixes:
+    - Fixed broken localisation references.
+---------------------------------------------------------------------------------------------------
+Version: 1.1.0
+Date: 03. 02. 2018
+  Inter-mod support:
+    - An easy way for modders to make their items crateable has been provided. See the readme pdf inside the zip.
+  Changes:
+    - Research costs realigned with vanilla technologies.
+    - Research tiers (i.e. which resources are in which tier) now match Deadlock's Stacking Beltboxes.
+  Bugfixes:
+    - Research tiers always shown correctly on the technology list.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.1
+Date: 31. 01. 2018
+  Changes:
+    - ReStack added as an optional dependency because it insists on making very late changes to vanilla items.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.0
+Date: 29. 01. 2018
+  Changes:
+    - Stable version. No further big changes to make.
+    - Research costs lowered.
+---------------------------------------------------------------------------------------------------
+Version: 0.2.1
+Date: 26. 01. 2018
+  Changes:
+    - Power requirements rebalanced, based on doing the maths for equivalent throughput.
+    - The bad news: it takes more power than before to crate up a big blue bus with Tier 3 machines, and the overhead drain is more.
+    - The good news: you need relatively less power than before to crate up yellow and red buses with Tier 1 and 2 crating machines.
+    - If power becomes a problem mid-game, a reminder: smart power switches are a thing.
+---------------------------------------------------------------------------------------------------
+Version: 0.2.0
+Date: 26. 01. 2018
+  Changes:
+    - The machine is now a more overt upgrade of a regular assembler, with three tiers of machine, so that crating overheads can be scaled to local needs. T1 can handle a compressed yellow belt, T2 red, T3 blue.
+    - Recipes, crafting times, energy use, and research costs rebalanced to reflect this.
+    - Tier 3 crates are no longer steel chests, it was too expensive. All crates are now wooden.
+    - Icons updated.
+---------------------------------------------------------------------------------------------------
+Version: 0.1.3
+Date: 25. 01. 2018
+  Changes:
+    - Crafting tab re-organised, based on the research tiers. Packing machine moved out of vanilla tab.
+    - Item, recipe, and research icons updated.
+    - Iron sticks removed from crating. Who wants to shift a million sticks around?
+    - Research tier 3 now slightly cheaper.
+---------------------------------------------------------------------------------------------------
+Version: 0.1.2
+Date: 24. 01. 2018
+  Changes:
+    - Solid fuel, uranium-235 and uranium-238 can now be packed into crates.
+    - Recipes were moved to their own crafting tab (placeholder icon) and grouped in pairs.
+    - Icons, names and descriptions were improved.
+  Bugfixes:
+    - The packing machine returns the correct item when deconstructed.
+    - Crates containing fuel-type items can't be burned as fuel.
+---------------------------------------------------------------------------------------------------
+Version: 0.1.1
+Date: 24. 01. 2018
+  Bugfixes:
+    - The machine's entity icon was not the same as the item icon.
+    - The machine drains power when idle at the intended 50% ratio.
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 24. 01. 2018
+  Changes:
+    - Initial release.
