@@ -1,10 +1,15 @@
+local DCM = require "prototypes.shared"
+
 -- crafting tab groups
 data:extend {
 	{
 		type = "item-group",
 		name = "deadlock-crates",
 		order = "z",
-		icon = "__DeadlockCrating__/graphics/deadlock-crating.png",
+		icons = {
+			{ icon = "__DeadlockCrating__/graphics/icons/crating-icon-base-128.png" },
+			{ icon = "__DeadlockCrating__/graphics/icons/crating-icon-mask-128.png", tint = DCM.TIER_COLOURS[1] },
+		},
 		icon_size = 128,
 	},
     {
@@ -43,7 +48,7 @@ data:extend {
 	 {"steel-plate",20},
 	},
 	result = "deadlock-machine-packer-item-1",
-	energy_required = 8.0;
+	energy_required = 5.0;
 	},
 	{
 	type = "recipe",
@@ -56,7 +61,7 @@ data:extend {
 	 {"steel-plate",30},
 	},
 	result = "deadlock-machine-packer-item-2",
-	energy_required = 10.0;
+	energy_required = 8.0;
 	},
 	{
 	type = "recipe",

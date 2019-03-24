@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.4.1
+Date: 21. 03. 2019
+  Changes:
+    - Brand new unique crate machine graphics!
+    - Adjusted crafting times to match 0.17 belt speeds, so that each tier compresses its respective belt again.
+    - Updated crate icons to match new wooden chests.
+---------------------------------------------------------------------------------------------------
 Version: 1.4.0
 Date: 02. 03. 2019
   Changes:

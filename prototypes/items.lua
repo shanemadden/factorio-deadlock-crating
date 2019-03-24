@@ -5,7 +5,11 @@ for i=1,DCM.TIERS do
 	local item = table.deepcopy(data.raw.item["assembling-machine-"..i])
 	item.name = "deadlock-machine-packer-item-"..i
 	item.subgroup = "production-machine"
-	item.icon = "__DeadlockCrating__/graphics/crate-machine-"..i..".png"
+	item.icons = {
+		{ icon = "__DeadlockCrating__/graphics/icons/crating-icon-base-64.png" },
+		{ icon = "__DeadlockCrating__/graphics/icons/crating-icon-mask-64.png", tint = DCM.TIER_COLOURS[i] },
+	}
+	item.icon_size = 64
 	item.order = "z"..i
 	item.place_result = "deadlock-machine-packer-entity-"..i
 	data:extend{item}

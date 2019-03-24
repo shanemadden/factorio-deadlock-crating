@@ -44,7 +44,10 @@ for i=1,3 do
 	end
 	local research = table.deepcopy(data.raw.technology[baseresearch[i]])
 	research.effects = recipeeffects
-	research.icon = "__DeadlockCrating__/graphics/deadlock-crating.png"
+	research.icons = {
+		{ icon = "__DeadlockCrating__/graphics/icons/crating-icon-base-128.png" },
+		{ icon = "__DeadlockCrating__/graphics/icons/crating-icon-mask-128.png", tint = DCM.TIER_COLOURS[i] },
+	}
 	research.name = DCM.TECH_PREFIX..i
 	research.unit.count = research.unit.count * 2
 	research.prerequisites = prereqs[i]

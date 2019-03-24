@@ -19,6 +19,13 @@ DCM.ITEM_TIER = {
 	[3] = { "processing-unit", "battery", "uranium-ore", "uranium-235", "uranium-238" },
 }
 
+DCM.TIER_COLOURS = {
+	[1] = {r=210, g=180, b=80},
+	[2] = {r=210, g=60, b=60},
+	[3] = {r=80, g=180, b=210},
+}
+
+
 DCM.TECH_PREFIX = "deadlock-crating-"
 
 -- DCM.debug logging
@@ -41,21 +48,27 @@ function DCM.generate_crates(this_item, subgroup, icon_size)
 		return
 	end
 	local items_per_crate = base_item.stack_size/DCM.STACK_DIVIDER
-    local crateitem = "__DeadlockCrating__/graphics/wooden-chest-dark.png"
+    local crateitem = "__DeadlockCrating__/graphics/icons/crate-64.png"
     local icons
 	if base_item.icon then
 		icons = {
-			{ icon = crateitem, icon_size = 32 },
+			{ icon = crateitem, icon_size = 64 },
 			{
 				icon = base_item.icon,
 				scale = 0.7 * 32 / icon_size,
-				shift = {0, 0},
+				shift = {2, 2},
+                icon_size = icon_size,
+				tint = {0,0,0,0.75},
+			},
+			{
+				icon = base_item.icon,
+				scale = 0.7 * 32 / icon_size,
                 icon_size = icon_size,
 			},
 		}
 	elseif base_item.icons then
 		local tempcopy = table.deepcopy(base_item.icons)
-		icons = { { icon = crateitem, icon_size = 32 } }
+		icons = { { icon = crateitem, icon_size = 64 } }
 		local c = 2
 		for i,v in ipairs(tempcopy) do
 			icons[c] = table.deepcopy(v)
@@ -69,8 +82,8 @@ function DCM.generate_crates(this_item, subgroup, icon_size)
 	end
 	local packrecipeicons = table.deepcopy(icons)
 	local unpackrecipeicons = table.deepcopy(icons)
-	table.insert(packrecipeicons, 2, { icon = "__DeadlockCrating__/graphics/arrow-d-"..icon_size..".png", scale = 0.5 * 32 / icon_size, icon_size = icon_size, shift = {0, 8} } ) 
-	table.insert(unpackrecipeicons, 2, { icon = "__DeadlockCrating__/graphics/arrow-u-"..icon_size..".png", scale = 0.5 * 32 / icon_size, icon_size = icon_size, shift = {0, -8} } ) 
+	table.insert(packrecipeicons, { icon = "__DeadlockCrating__/graphics/icons/arrow-d-"..icon_size..".png", scale = 0.5 * 32 / icon_size, icon_size = icon_size, shift = {0, 8} } ) 
+	table.insert(unpackrecipeicons, { icon = "__DeadlockCrating__/graphics/icons/arrow-u-"..icon_size..".png", scale = 0.5 * 32 / icon_size, icon_size = icon_size, shift = {0, -8} } ) 
 	-- the item
 	data:extend { 
         -- the item
@@ -102,7 +115,7 @@ function DCM.generate_crates(this_item, subgroup, icon_size)
 			icons = packrecipeicons,
             icon_size = icon_size, 
 			result = "deadlock-crate-"..this_item,
-			energy_required = 3*items_per_crate/40,
+			energy_required = items_per_crate/15,
 			allow_decomposition = false,
             allow_intermediates = false,
             allow_as_intermediate = false,
@@ -127,7 +140,7 @@ function DCM.generate_crates(this_item, subgroup, icon_size)
 				{"wooden-chest", 1},
 				{this_item, items_per_crate},
 			},
-			energy_required = 3*items_per_crate/40,
+			energy_required = items_per_crate/15,
 			allow_decomposition = false,
             allow_intermediates = false,
             allow_as_intermediate = false,
