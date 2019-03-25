@@ -1,11 +1,15 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.4.3
+Date: 26. 03. 2019
+  Bugfixes:
+    - Tier colour mask wasn't rendered properly, now fixed.
+---------------------------------------------------------------------------------------------------
 Version: 1.4.2
-Date: 21. 03. 2019
+Date: 25. 03. 2019
   Bugfixes:
     - Fixed a pollution issue. Crating machines now equal the pollution of assemblers of the same tier.
   Changes:
     - Rebalanced energy usage.
-    - Specify machine items from scratch instead of relying on game data.
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.1
 Date: 21. 03. 2019
