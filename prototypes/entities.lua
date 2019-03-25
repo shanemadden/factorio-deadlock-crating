@@ -1,15 +1,33 @@
 local DCM = require "prototypes.shared"
 
--- the crating machines
-
+-- brighter version of tier colour for working vis glow & lights
 local function brighter_colour(c)
 	local w = 240
 	return { r = math.floor((c.r + w)/2), g = math.floor((c.g + w)/2), b = math.floor((c.b + w)/2) }
 end
 
-for i=1,3 do
+-- for calculating scales of energy, health etc.
+local function get_scale(this_tier, tiers, lowest, highest)
+	return lowest + ((highest - lowest) * ((this_tier - 1) / (tiers - 1)))
+end
+
+-- Energy and pollution. They just couldn't make it easy, could they
+local function get_energy_table(this_tier, tiers, lowest, highest, passive_multiplier, pollution)
+	local total = get_scale(this_tier, tiers, lowest, highest)
+	local passive_energy_usage = total * passive_multiplier
+	local active_energy_usage = total * (1 - passive_multiplier)
+	return {
+		passive = passive_energy_usage .. "KW", -- passive energy drain as a string
+		active = active_energy_usage .. "KW", -- active energy usage as a string
+		emissions = pollution / active_energy_usage / 1000, -- pollution/s/W
+	}
+end
+
+-- iterate through tiers
+for i=1,DCM.TIERS do
 	local machine = table.deepcopy(data.raw["assembling-machine"]["assembling-machine-"..i])
 	machine.name = "deadlock-machine-packer-entity-"..i
+	machine.icon = nil
 	machine.icons = {
 		{ icon = "__DeadlockCrating__/graphics/icons/crating-icon-base-128.png" },
 		{ icon = "__DeadlockCrating__/graphics/icons/crating-icon-mask-128.png", tint = DCM.TIER_COLOURS[1] },
@@ -22,13 +40,14 @@ for i=1,3 do
 	}
 	machine.allowed_effects = {"consumption"}
 	machine.crafting_categories = {"packing"}
-	machine.max_health = 300 + i*75
-	machine.energy_usage = i*170 .. "KW"
+	machine.max_health = get_scale(i, DCM.TIERS, 300, 400)
+	local energy_table = get_energy_table(i, DCM.TIERS, 500, 1000, 0.1, 5 - i)
+	machine.energy_usage = energy_table.active
 	machine.energy_source = {
-			emissions = 0.015,
-			type = "electric",
-			usage_priority = "secondary-input",
-			drain = i*170 .. "KW",
+		type = "electric",
+		usage_priority = "secondary-input",
+		drain = energy_table.passive,
+		emissions_per_second_per_watt = energy_table.emissions, -- replaces old emissions parameter
 	}
 	machine.working_sound = { filename = "__DeadlockCrating__/sounds/deadlock-crate-machine.ogg", volume = 0.7 }
 	machine.animation = {

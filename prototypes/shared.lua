@@ -4,6 +4,9 @@ local DCM = {}
 -- print to log for non-errors
 DCM.LOGGING = false
 
+-- size of machine icons and crate background
+DCM.ITEM_ICON_SIZE = 32
+
 -- how many crates to use up a whole vanilla stack
 DCM.STACK_DIVIDER = 5
 
@@ -48,11 +51,11 @@ function DCM.generate_crates(this_item, subgroup, icon_size)
 		return
 	end
 	local items_per_crate = base_item.stack_size/DCM.STACK_DIVIDER
-    local crateitem = "__DeadlockCrating__/graphics/icons/crate-64.png"
+    local crateitem = "__DeadlockCrating__/graphics/icons/crate-"..DCM.ITEM_ICON_SIZE..".png"
     local icons
 	if base_item.icon then
 		icons = {
-			{ icon = crateitem, icon_size = 64 },
+			{ icon = crateitem, icon_size = DCM.ITEM_ICON_SIZE },
 			{
 				icon = base_item.icon,
 				scale = 0.7 * 32 / icon_size,
@@ -68,7 +71,7 @@ function DCM.generate_crates(this_item, subgroup, icon_size)
 		}
 	elseif base_item.icons then
 		local tempcopy = table.deepcopy(base_item.icons)
-		icons = { { icon = crateitem, icon_size = 64 } }
+		icons = { { icon = crateitem, icon_size = DCM.ITEM_ICON_SIZE } }
 		local c = 2
 		for i,v in ipairs(tempcopy) do
 			icons[c] = table.deepcopy(v)

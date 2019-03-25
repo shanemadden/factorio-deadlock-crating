@@ -2,17 +2,22 @@ local DCM = require "prototypes.shared"
 
 -- crating machines
 for i=1,DCM.TIERS do
-	local item = table.deepcopy(data.raw.item["assembling-machine-"..i])
-	item.name = "deadlock-machine-packer-item-"..i
-	item.subgroup = "production-machine"
-	item.icons = {
-		{ icon = "__DeadlockCrating__/graphics/icons/crating-icon-base-64.png" },
-		{ icon = "__DeadlockCrating__/graphics/icons/crating-icon-mask-64.png", tint = DCM.TIER_COLOURS[i] },
+	data:extend {
+		{
+			type = "item",
+			name = "deadlock-machine-packer-item-"..i,
+			subgroup = "production-machine",
+			stack_size = 50,
+			icons = {
+				{ icon = "__DeadlockCrating__/graphics/icons/crating-icon-base-"..DCM.ITEM_ICON_SIZE..".png" },
+				{ icon = "__DeadlockCrating__/graphics/icons/crating-icon-mask-"..DCM.ITEM_ICON_SIZE..".png", tint = DCM.TIER_COLOURS[i] },
+			},
+			icon_size = DCM.ITEM_ICON_SIZE,
+			order = "z"..i,
+			place_result = "deadlock-machine-packer-entity-"..i,
+			flags = {},
+		}
 	}
-	item.icon_size = 64
-	item.order = "z"..i
-	item.place_result = "deadlock-machine-packer-entity-"..i
-	data:extend{item}
 end
 
 -- generate vanilla crates
