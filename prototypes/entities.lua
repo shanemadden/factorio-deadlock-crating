@@ -54,26 +54,6 @@ for i=1,DCM.TIERS do
 		layers = {
 			{
 				hr_version = {
-					draw_as_shadow = true,
-					filename = "__DeadlockCrating__/graphics/entities/high/crating-shadow.png",
-					animation_speed = 1 / i,
-					repeat_count = 60,
-					height = 192,
-					scale = 0.5,
-					shift = {1.5, 0},
-					width = 384
-				},
-				draw_as_shadow = true,
-				filename = "__DeadlockCrating__/graphics/entities/low/crating-shadow.png",
-				animation_speed = 1 / i,
-				repeat_count = 60,
-				height = 96,
-				scale = 1,
-				shift = {1.5, 0},
-				width = 192	
-			},
-			{
-				hr_version = {
 					filename = "__DeadlockCrating__/graphics/entities/high/crating-base.png",
 					animation_speed = 1 / i,
 					priority = "high",
@@ -115,6 +95,26 @@ for i=1,DCM.TIERS do
 				shift = {0, 0},
 				width = 96,	
 				tint = DCM.TIER_COLOURS[i],
+			},
+			{
+				hr_version = {
+					draw_as_shadow = true,
+					filename = "__DeadlockCrating__/graphics/entities/high/crating-shadow.png",
+					animation_speed = 1 / i,
+					repeat_count = 60,
+					height = 192,
+					scale = 0.5,
+					shift = {1.5, 0},
+					width = 384
+				},
+				draw_as_shadow = true,
+				filename = "__DeadlockCrating__/graphics/entities/low/crating-shadow.png",
+				animation_speed = 1 / i,
+				repeat_count = 60,
+				height = 96,
+				scale = 1,
+				shift = {1.5, 0},
+				width = 192	
 			}
 		}
 	}
