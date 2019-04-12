@@ -4,6 +4,9 @@ local DCM = {}
 -- print to log for non-errors
 DCM.LOGGING = false
 
+-- default tier 1 belt speed in items/s
+DCM.BELT_SPEED = 15
+
 -- size of machine icons and crate background
 DCM.ITEM_ICON_SIZE = 32
 
@@ -118,12 +121,11 @@ function DCM.generate_crates(this_item, subgroup, icon_size)
 			icons = packrecipeicons,
             icon_size = icon_size, 
 			result = "deadlock-crate-"..this_item,
-			energy_required = items_per_crate/15,
+			energy_required = items_per_crate/DCM.BELT_SPEED,
 			allow_decomposition = false,
             allow_intermediates = false,
             allow_as_intermediate = false,
             hide_from_stats = true,
-			main_product = nil,
 		},
 		-- The unpacking recipe
 		{
@@ -143,12 +145,11 @@ function DCM.generate_crates(this_item, subgroup, icon_size)
 				{"wooden-chest", 1},
 				{this_item, items_per_crate},
 			},
-			energy_required = items_per_crate/15,
+			energy_required = items_per_crate/DCM.BELT_SPEED,
 			allow_decomposition = false,
             allow_intermediates = false,
             allow_as_intermediate = false,
             hide_from_stats = true,
-			main_product = nil,
 		},
 	}
 	DCM.debug("DCM: crates created: "..this_item)
