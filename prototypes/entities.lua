@@ -12,20 +12,19 @@ local function get_scale(this_tier, tiers, lowest, highest)
 end
 
 -- Energy and pollution. They just couldn't make it easy, could they
-local function get_energy_table(this_tier, tiers, lowest, highest, passive_multiplier, pollution)
+local function get_energy_table(this_tier, tiers, lowest, highest, passive_multiplier)
 	local total = get_scale(this_tier, tiers, lowest, highest)
 	local passive_energy_usage = total * passive_multiplier
 	local active_energy_usage = total * (1 - passive_multiplier)
 	return {
 		passive = passive_energy_usage .. "KW", -- passive energy drain as a string
 		active = active_energy_usage .. "KW", -- active energy usage as a string
-		emissions = pollution / active_energy_usage / 1000, -- pollution/s/W
 	}
 end
 
 -- iterate through tiers
 for i=1,DCM.TIERS do
-	local energy_table = get_energy_table(i, DCM.TIERS, 500, 1000, 0.1, 5 - i)
+	local energy_table = get_energy_table(i, DCM.TIERS, 500, 1000, 0.1)
 	local machine = {
 		name = "deadlock-machine-packer-entity-"..i,
 		type = "assembling-machine",
@@ -52,7 +51,7 @@ for i=1,DCM.TIERS do
 			type = "electric",
 			usage_priority = "secondary-input",
 			drain = energy_table.passive,
-			emissions_per_second_per_watt = energy_table.emissions,
+			emissions_per_minute = 5-i,
 		},
 		dying_explosion = "medium-explosion",
 		resistances = {
