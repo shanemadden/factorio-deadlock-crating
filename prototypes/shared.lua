@@ -15,6 +15,7 @@ DCM.STACK_DIVIDER = 5
 
 -- how many tiers of tech?
 DCM.TIERS = 3
+
 -- there are kind-of 4 tiers - all imported mod items go in tier 4 - only affects crafting tab
 DCM.TAB_TIERS = DCM.TIERS + 1
 

@@ -17,31 +17,11 @@ local baseresearch = {
 -- research
 for i=1,3 do
 	local recipeeffects = {
-		[1] = {type = "unlock-recipe",
+		{
+			type = "unlock-recipe",
 			recipe = "deadlock-machine-packer-recipe-"..i
 		},
 	}
-	for i,recipe in pairs(DCM.ITEM_TIER[i]) do
-		table.insert(recipeeffects,   
-			{type = "unlock-recipe",
-				recipe = "deadlock-packrecipe-"..recipe
-			}
-		)
-		table.insert(recipeeffects,   
-			{type = "unlock-recipe",
-				recipe = "deadlock-unpackrecipe-"..recipe
-			}
-		)
-		--[[
-		if data.raw.item["deadlock-stack-"..recipe] then
-			table.insert(recipeeffects,   
-				{type = "unlock-recipe",
-					recipe = "deadlock-packrecipe-deadlock-stack-"..recipe
-				}
-			)
-		end
-		]]--
-	end
 	local research = table.deepcopy(data.raw.technology[baseresearch[i]])
 	research.effects = recipeeffects
 	research.icons = {
