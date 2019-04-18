@@ -19,10 +19,3 @@ for i=1,DCM.TIERS do
 		}
 	}
 end
-
--- generate vanilla crates
-for i=1,DCM.TIERS do
-	for _,item in pairs(DCM.ITEM_TIER[i]) do
-		DCM.generate_crates(item, i)
-	end
-end
