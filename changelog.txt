@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.4.8
+Date: 26. 04. 2019
+  Changes:
+    - Prevent creating invalid recipes with greater than 65,535 ingredients when items have insanely large stack sizes
+---------------------------------------------------------------------------------------------------
 Version: 1.4.7
 Date: 18. 04. 2019
   Changes:
