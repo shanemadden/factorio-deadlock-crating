@@ -55,6 +55,11 @@ function DCM.generate_crates(this_item, subgroup, icon_size)
 		return
 	end
 	local items_per_crate = base_item.stack_size/DCM.STACK_DIVIDER
+	-- stop stack multiplier mods from breaking everything
+	if items_per_crate > 65535 then
+		log("ABORT: DCM encountered a recipe with insane stack size ("..this_item..")")
+		return
+	end
     local crateitem = "__DeadlockCrating__/graphics/icons/crate-"..DCM.ITEM_ICON_SIZE..".png"
     local icons
 	if base_item.icon then
