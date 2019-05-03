@@ -33,7 +33,7 @@ data:extend {
     name = "packing";
 	},
 }
-table.insert(data.raw["player"]["player"].crafting_categories, "packing")
+table.insert(data.raw["character"]["character"].crafting_categories, "packing")
 
 -- the machines
 data:extend {
