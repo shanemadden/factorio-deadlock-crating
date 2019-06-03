@@ -8,7 +8,7 @@ function deadlock_crating.create(item_name, target_tech, icon_size)
     local sg = DCM.TAB_TIERS
     if string.find(target_tech, DCM.TECH_PREFIX, 1, true) then
         local e = tonumber(string.sub(target_tech, -1))
-        if e > 0 and e < DCM.TIERS then sg = e end
+        if e and e > 0 and e < DCM.TIERS then sg = e end
     end
 	DCM.generate_crates(item_name, sg, icon_size)
 	DCM.add_crates_to_tech(item_name, target_tech)
