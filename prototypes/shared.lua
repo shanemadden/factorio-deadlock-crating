@@ -8,7 +8,7 @@ DCM.LOGGING = false
 DCM.BELT_SPEED = 15
 
 -- size of machine icons and crate background
-DCM.ITEM_ICON_SIZE = 32
+DCM.ITEM_ICON_SIZE = 64
 
 -- how many crates to use up a whole vanilla stack
 DCM.STACK_DIVIDER = 5
