@@ -9,16 +9,14 @@ deadlock_crating = {}
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
--- deadlock_crating.create()
+-- deadlock_crating.add_crate()
 -- Creates a new crated version of a specified item
 -- item_name (string) - mandatory - name of the item prototype you want to be put into crates
 -- target_tech (string) - optional - name of the technology you want to add the crating unlocks to. If this is unspecified/nil, they won't be unlocked at all and you must handle the unlocks yourself
--- icon_size (integer) - optional - size of the item's icon, defaults to the same default as DCM (64) if unspecified/nil
 -- Example: deadlock_crating.create("nuclear-laser-bomb", "deadlock-crating-3", 64)
-function deadlock_crating.create(item_name, target_tech, icon_size)
-	if not item_name then error("DCM: create() given nil item name") end
-	if not icon_size then icon_size = 32 end
-	DCM.generate_crates(item_name, icon_size)
+function deadlock_crating.add_crate(item_name, target_tech)
+	if not item_name then error("DCM: add_crate() given nil item name") end
+	DCM.generate_crates(item_name)
 	if target_tech then DCM.add_crates_to_tech(item_name, target_tech) end
 end
 
@@ -43,7 +41,7 @@ function deadlock_crating.destroy_vanilla_crates()
 	end
 end
 
--- deadlock_crating.create_tier()
+-- deadlock_crating.add_tier()
 -- This function will create a new tier of machine and a new technology that unlocks it. You can then add new crating recipes to it with deadlock_crating.create().
 -- If you specify a tier that already exists, * it will be overwritten *, so you will also have to recreate any tech unlocks that you wanted to keep.
 -- parameters (table) - Takes just one argument, a table with the following keys defined (in any order because it's a table):
@@ -59,7 +57,7 @@ end
 -- .unit (table) - mandatory if tier is not 1-3, otherwise optional - the unit cost for the technology (see https://wiki.factorio.com/Prototype/Technology#unit). Defaults to native tier scheme if not specified and tier is 1-3. Cannot be nil.
 -- .health (integer) - mandatory if tier is not a number, otherwise optional - the max health of the machine. Defaults to vanilla tier scheme if not specified for numbered tiers. 
 -- The resulting machine item, recipe and entity will be named deadlock-crating-machine-N where N = tier. The technology is named deadlock-crating-N.
-function deadlock_crating.create_tier(parameters)
+function deadlock_crating.add_tier(parameters)
 	if not parameters.tier then error("DCM: create_tier(): tier not specified") end
 	if not parameters.ingredients then error("DCM: create_tier(): ingredients not specified") end
 	if not parameters.speed and type(parameters.tier) ~= "number" then error("DCM: create_tier(): speed not specified for non-numeric tier") end
@@ -116,5 +114,16 @@ function deadlock_crating.reset()
         end
     end
     DCM.debug("DCM: reset() - all vanilla crates removed from tech unlocks.")
+end
+
+-- deadlock_crating.create()
+-- Creates a new crated version of a specified item
+-- DEPRECATED
+function deadlock_crating.create(item_name, target_tech, icon_size)
+	log("DCM: deadlock_crating.create("..item_name..") - this function is deprecated, consider using deadlock_crating.destroy_crate() instead")
+	if not item_name then error("DCM: create() given nil item name") end
+	if not icon_size then icon_size = 32 end
+	DCM.generate_crates(item_name, icon_size)
+	if target_tech then DCM.add_crates_to_tech(item_name, target_tech) end
 end
 
