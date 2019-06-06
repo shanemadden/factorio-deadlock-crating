@@ -1,0 +1,23 @@
+{
+  "item": [
+    ["deadlock-machine-packer-item-1", "deadlock-crating-machine-1"],
+    ["deadlock-machine-packer-item-2", "deadlock-crating-machine-2"],
+    ["deadlock-machine-packer-item-3", "deadlock-crating-machine-3"],
+    ["deadlock-machine-packer-item-4", "deadlock-crating-machine-4"],
+    ["deadlock-machine-packer-item-5", "deadlock-crating-machine-5"]
+  ],
+  "recipe": [
+    ["deadlock-machine-packer-recipe-1", "deadlock-crating-machine-1"],
+    ["deadlock-machine-packer-recipe-2", "deadlock-crating-machine-2"],
+    ["deadlock-machine-packer-recipe-3", "deadlock-crating-machine-3"],
+    ["deadlock-machine-packer-recipe-4", "deadlock-crating-machine-4"],
+    ["deadlock-machine-packer-recipe-5", "deadlock-crating-machine-5"]
+  ],
+  "entity": [
+    ["deadlock-machine-packer-entity-1", "deadlock-crating-machine-1"],
+    ["deadlock-machine-packer-entity-2", "deadlock-crating-machine-2"],
+    ["deadlock-machine-packer-entity-3", "deadlock-crating-machine-3"],
+    ["deadlock-machine-packer-entity-4", "deadlock-crating-machine-4"],
+    ["deadlock-machine-packer-entity-5", "deadlock-crating-machine-5"]
+  ]
+}

@@ -1,4 +1,20 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.5.0
+Date: 04. 06. 2019
+  Changes:
+    - Default icon size is now 64.
+    - All crating machines now have the same crafting time (3 seconds).
+    - Crating machine recipe selection GUI no longer refers to "assembling".
+  API:
+    - The DCM API was updated. See public.lua for details, but briefly:
+    - NEW: deadlock_crating.destroy_crate(). This deletes the crated version of an item and all recipe/tech references to it.
+    - NEW: deadlock_crating.destroy_vanilla_crates(). This deletes all the default vanilla item crates and all references to them.
+    - NEW: deadlock_crating.create_tier(). This adds (or replaces) a tier of machines and tech.
+    - DEPRECATED: deadlock_crating.remove(). Consider using deadlock_crating.destroy_crate() instead.
+    - DEPRECATED: deadlock_crating.reset(). Consider using deadlock_crating.destroy_vanilla_crates() instead.
+    - deadlock_crating.create() now accepts a nil technology reference, but you will need to handle the recipe unlocks yourself.
+    - Removed references to crafting tab subgroups which haven't been used for more than a year.
+---------------------------------------------------------------------------------------------------
 Version: 1.4.10
 Date: 02. 06. 2019
   Changes:
