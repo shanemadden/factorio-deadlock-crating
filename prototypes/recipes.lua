@@ -29,8 +29,8 @@ data:extend {
         name = "deadlock-crates",
         order = "z",
         icons = {
-            { icon = "__DeadlockCrating__/graphics/icons/crating-icon-base-128.png" },
-            { icon = "__DeadlockCrating__/graphics/icons/crating-icon-mask-128.png", tint = DCM.TIER_COLOURS[1] },
+            { icon = "__DeadlockCrating__/graphics/icons/square/crating-icon-base-128.png" },
+            { icon = "__DeadlockCrating__/graphics/icons/square/crating-icon-mask-128.png", tint = DCM.TIER_COLOURS[1] },
         },
         icon_size = 128,
     },

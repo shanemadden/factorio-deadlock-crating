@@ -79,7 +79,7 @@ function DCM.generate_crates(this_item, icon_size)
         log("ABORT: DCM encountered a recipe with insane stack size ("..this_item..")")
         return
     end
-    local crate_icon = "__DeadlockCrating__/graphics/icons/crate-"..DCM.ITEM_ICON_SIZE..".png"
+    local crate_icon = "__DeadlockCrating__/graphics/icons/square/crate-"..DCM.ITEM_ICON_SIZE..".png"
     local icons = {
 		{
 			icon = crate_icon,
@@ -114,8 +114,8 @@ function DCM.generate_crates(this_item, icon_size)
     end
     local packrecipeicons = table.deepcopy(icons)
     local unpackrecipeicons = table.deepcopy(icons)
-    table.insert(packrecipeicons, { icon = "__DeadlockCrating__/graphics/icons/arrow-d-"..icon_size..".png", scale = 0.5 * 32 / icon_size, icon_size = icon_size, shift = {0, 8} } )
-    table.insert(unpackrecipeicons, { icon = "__DeadlockCrating__/graphics/icons/arrow-u-"..icon_size..".png", scale = 0.5 * 32 / icon_size, icon_size = icon_size, shift = {0, -8} } )
+    table.insert(packrecipeicons, { icon = "__DeadlockCrating__/graphics/icons/mipmaps/crating-arrow-d.png", scale = 0.5 * 32 / icon_size, icon_size = icon_size, icon_mipmaps = 4, shift = {0, 8} } )
+    table.insert(unpackrecipeicons, { icon = "__DeadlockCrating__/graphics/icons/mipmaps/crating-arrow-u.png", scale = 0.5 * 32 / icon_size, icon_size = icon_size, icon_mipmaps = 4, shift = {0, -8} } )
     -- the item
     data:extend {
         -- the item
@@ -370,8 +370,8 @@ function DCM.create_machine_entity(tier, colour, speed, pollution, energy, drain
         next_upgrade = upgrade,
         fast_replaceable_group = "crating-machine",
         icons = {
-            { icon = "__DeadlockCrating__/graphics/icons/crating-icon-base-"..DCM.ITEM_ICON_SIZE..".png", icon_size = DCM.ITEM_ICON_SIZE },
-            { icon = "__DeadlockCrating__/graphics/icons/crating-icon-mask-"..DCM.ITEM_ICON_SIZE..".png", icon_size = DCM.ITEM_ICON_SIZE, tint = DCM.TIER_COLOURS[1] },
+            { icon = "__DeadlockCrating__/graphics/icons/mipmaps/crating-icon-base.png", icon_size = DCM.ITEM_ICON_SIZE, icon_mipmaps = 4 },
+            { icon = "__DeadlockCrating__/graphics/icons/mipmaps/crating-icon-mask.png", icon_size = DCM.ITEM_ICON_SIZE, tint = colour, icon_mipmaps = 4 },
         },
         minable = {
             mining_time = 0.5,
@@ -548,8 +548,8 @@ function DCM.create_machine_item(tier, colour)
             subgroup = "production-machine",
             stack_size = 50,
             icons = {
-                { icon = "__DeadlockCrating__/graphics/icons/crating-icon-base-"..DCM.ITEM_ICON_SIZE..".png" },
-                { icon = "__DeadlockCrating__/graphics/icons/crating-icon-mask-"..DCM.ITEM_ICON_SIZE..".png", tint = colour },
+				{ icon = "__DeadlockCrating__/graphics/icons/mipmaps/crating-icon-base.png", icon_size = DCM.ITEM_ICON_SIZE, icon_mipmaps = 4 },
+				{ icon = "__DeadlockCrating__/graphics/icons/mipmaps/crating-icon-mask.png", icon_size = DCM.ITEM_ICON_SIZE, tint = colour, icon_mipmaps = 4 },
             },
             icon_size = DCM.ITEM_ICON_SIZE,
             order = "z[crating-machine]-" .. order,
@@ -602,8 +602,8 @@ function DCM.create_crating_technology(tier, colour, prerequisites, unit)
             prerequisites = prerequisites,
             unit = unit,
             icons = {
-                { icon = "__DeadlockCrating__/graphics/icons/crating-icon-base-128.png" },
-                { icon = "__DeadlockCrating__/graphics/icons/crating-icon-mask-128.png", tint = colour },
+                { icon = "__DeadlockCrating__/graphics/icons/square/crating-icon-base-128.png" },
+                { icon = "__DeadlockCrating__/graphics/icons/square/crating-icon-mask-128.png", tint = colour },
             },
             icon_size = 128,
             order = order,
