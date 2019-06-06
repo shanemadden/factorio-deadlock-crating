@@ -209,8 +209,9 @@ target mod provides different belts.
 **Item/recipe/entity/technology names.** If you want to use crate items in
 recipes, they have conventionalised prefixes (see table below).
 
-| **Crate items**                    | deadlock-crate-[item-name]                                         |
+| **Prototype**                      | **Value**                                                          |
 |------------------------------------|--------------------------------------------------------------------|
+| **Crate items**                    | deadlock-crate-[item-name]                                         |
 | **Crate recipes**                  | deadlock-crates-pack-[item-name]                                   |
 |                                    | deadlock-crates-unpack-[item-name]                                 |
 | **Machine items/recipes/entities** | deadlock-crating-machine-[tier]                                    |
