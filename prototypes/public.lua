@@ -120,7 +120,7 @@ end
 -- Creates a new crated version of a specified item
 -- DEPRECATED
 function deadlock_crating.create(item_name, target_tech, icon_size)
-	log("DCM: deadlock_crating.create("..item_name..") - this function is deprecated, consider using deadlock_crating.destroy_crate() instead")
+	log("DCM: deadlock_crating.create("..item_name..") - this function is deprecated, consider using deadlock_crating.add_crate() instead")
 	if not item_name then error("DCM: create() given nil item name") end
 	if not icon_size then icon_size = 32 end
 	DCM.generate_crates(item_name, icon_size)

@@ -66,7 +66,7 @@ function DCM.generate_crates(this_item, icon_size)
     if icon_size and (icon_size ~= 32 and icon_size ~= 64 and icon_size ~= 128) then
         log("ERROR: DCM asked to use icon_size that is not 32, 64 or 128")
         return
-    end
+    else icon_size = DCM.icon_size end
     -- The crated item
     local base_item = data.raw.item[this_item]
     if not base_item then
@@ -79,23 +79,22 @@ function DCM.generate_crates(this_item, icon_size)
         log("ABORT: DCM encountered a recipe with insane stack size ("..this_item..")")
         return
     end
-    local crate_icon = "__DeadlockCrating__/graphics/icons/square/crate-"..DCM.ITEM_ICON_SIZE..".png"
     local icons = {
 		{
-			icon = crate_icon,
+			icon = "__DeadlockCrating__/graphics/icons/mipmaps/crate.png",
 			icon_size = DCM.ITEM_ICON_SIZE,
 			icon_mipmaps = 4,
 		}
 	}
     if base_item.icon then
-		table.insert(icons, {
-			icon = base_item.icon,
-			scale = 0.7 * 32 / base_item.icon_size,
-			icon_size = base_item.icon_size,
-			icon_mipmaps = base_item.icon_mipmaps,
-			tint = {0,0,0,0.75},
-			shift = {2, 2},
-		})
+		-- table.insert(icons, {
+			-- icon = base_item.icon,
+			-- scale = 0.7 * 32 / base_item.icon_size,
+			-- icon_size = base_item.icon_size,
+			-- icon_mipmaps = base_item.icon_mipmaps,
+			-- tint = {0,0,0,0.75},
+			-- shift = {2, 2},
+		-- })
 		table.insert(icons, {
 			icon = base_item.icon,
 			scale = 0.7 * 32 / base_item.icon_size,
@@ -105,7 +104,7 @@ function DCM.generate_crates(this_item, icon_size)
     elseif base_item.icons then
         for _,icon in pairs(base_item.icons) do
 			local temp_icon = table.deepcopy(icon)
-            temp_icon.scale = 0.7 * 32 / icon_size
+            temp_icon.scale = 0.7 * (temp_icon.scale or 1)
             table.insert(icons, temp_icon)
         end
     else
@@ -114,8 +113,8 @@ function DCM.generate_crates(this_item, icon_size)
     end
     local packrecipeicons = table.deepcopy(icons)
     local unpackrecipeicons = table.deepcopy(icons)
-    table.insert(packrecipeicons, { icon = "__DeadlockCrating__/graphics/icons/mipmaps/crating-arrow-d.png", scale = 0.5 * 32 / icon_size, icon_size = icon_size, icon_mipmaps = 4, shift = {0, 8} } )
-    table.insert(unpackrecipeicons, { icon = "__DeadlockCrating__/graphics/icons/mipmaps/crating-arrow-u.png", scale = 0.5 * 32 / icon_size, icon_size = icon_size, icon_mipmaps = 4, shift = {0, -8} } )
+    table.insert(packrecipeicons, 2, { icon = "__DeadlockCrating__/graphics/icons/square/arrow-d-64.png", scale = 0.25, icon_size = 64, shift = {0, 8} } )
+    table.insert(unpackrecipeicons, 2, { icon = "__DeadlockCrating__/graphics/icons/square/arrow-u-64.png", scale = 0.25, icon_size = 64, shift = {0, -8} } )
     -- the item
     data:extend {
         -- the item
@@ -128,7 +127,6 @@ function DCM.generate_crates(this_item, icon_size)
             subgroup = "deadlock-crates-pack",
             allow_decomposition = false,
             icons = icons,
-            icon_size = icon_size,
             flags = {},
         },
         -- The packing recipe
@@ -145,7 +143,6 @@ function DCM.generate_crates(this_item, icon_size)
                 {this_item, items_per_crate},
             },
             icons = packrecipeicons,
-            icon_size = icon_size,
             result = DCM.CRATE_ITEM_PREFIX .. this_item,
             energy_required = items_per_crate/DCM.BELT_SPEED,
             allow_decomposition = false,
@@ -166,7 +163,6 @@ function DCM.generate_crates(this_item, icon_size)
                 {DCM.CRATE_ITEM_PREFIX .. this_item, 1},
             },
             icons = unpackrecipeicons,
-            icon_size = icon_size,
             results = {
                 {"wooden-chest", 1},
                 {this_item, items_per_crate},
@@ -577,7 +573,7 @@ function DCM.create_machine_recipe(tier, ingredients)
     })
 end
 
--- create crating machine recipes
+-- create crating machine technologies - adds a new tech that unlocks a machine (crates added later on crate creation)
 -- tier (integer) - mandatory - numbered suffix appended to the name
 -- colour (table) - optional - Factorio colour table - defaults to DCM-defined defaults if not specified, or pink if tier is outside of range
 -- prerequisites (table) - optional - prerequisites techs, defaults to DCM native spec if tier within range, otherwise no prereqs
