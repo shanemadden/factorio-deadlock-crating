@@ -6,12 +6,12 @@ Date: 08. 06. 2019
     - It now takes the same time to craft any tier of crating machine (3 seconds).
     - Crating machine recipe selection GUI no longer refers to "assembling".
   API:
-    - The DCM API was updated. See public.lua for details, but briefly:
+    - The DCM API was updated. See README.md or public.lua for details, but briefly:
     - NEW: deadlock_crating.add_tier(). This adds (or replaces) a tier of machines and tech.
     - NEW: deadlock_crating.add_crate(). This is the same as the former create() call, but icon size is no longer required.
     - NEW: deadlock_crating.destroy_crate(). This deletes the crated version of an item and all recipe/tech references to it.
     - NEW: deadlock_crating.destroy_vanilla_crates(). This deletes all the default vanilla item crates and all references to them.
-	- DEPRECATED: deadlock_crating.create(). Consider using deadlock_crating.add_crate() instead.
+    - DEPRECATED: deadlock_crating.create(). Consider using deadlock_crating.add_crate() instead.
     - DEPRECATED: deadlock_crating.remove(). Consider using deadlock_crating.destroy_crate() instead.
     - DEPRECATED: deadlock_crating.reset(). Consider using deadlock_crating.destroy_vanilla_crates() instead.
     - Crate creation now accepts a nil technology reference, but you will need to handle the recipe unlocks yourself.
