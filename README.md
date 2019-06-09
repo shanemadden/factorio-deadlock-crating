@@ -3,8 +3,7 @@ Deadlock’s Crating Machine
 
 **DCM** is a Factorio mod which packs items into crates in order to boost belt
 throughput. If you are a Factorio modder, you can get DCM to automatically
-generate crated versions of items from your own mods, or any vanilla item which
-you think needs stacking.
+generate crated versions of items from your own mods, or any other vanilla item.
 
 Step 1
 ------
@@ -20,7 +19,7 @@ For example:
   "author": "Deadlock989",
   "contact": "",
   "homepage": "",
-  "dependencies": ["base \>= 0.17.0", **"?DeadlockCrating**],
+  "dependencies": ["base \>= 0.17.0", "?DeadlockCrating"],
   "description": "Some small quality of life adjustments.",
   "factorio_version": "0.17"
 }
@@ -43,7 +42,7 @@ DCM isn’t installed. For example:
 -- get DCM to crate my itamz
 if deadlock_crating then
   -- repeat this for every item you want crated
-  deadlock_crating.add_crate("deadlock-uber-diamond", "deadlock-crating-1", 64)
+  deadlock_crating.add_crate("deadlock-uber-diamond", "deadlock-crating-1")
 end
 ~~~~
 
@@ -64,7 +63,7 @@ takes two parameters. The typical call looks like:
 | **Parameter**   | **Optional / Mandatory?** | **Explanation**                                                                                                                                                                                                                                                                                                     |
 |-----------------|---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **item_name**   | Mandatory                 | The name of the item you want crated, e.g. “iron-plate”.                                                                                                                                                                                                                                                            |
-| **target_tech** | Optional                  | The technology name (e.g. “deadlock-stacking-1”) that the crating recipe unlocks will be inserted into. If specified, the technology **must already exist** as a prototype in data.raw. If omitted or nil, the mod won’t update any technologies, and you’ll have to handle gaining access to the recipes yourself. |
+| **target_tech** | Optional                  | The technology name (e.g. “deadlock-crating-1”) that the crating recipe unlocks will be inserted into. If specified, the technology **must already exist** as a prototype in data.raw. If omitted or nil, the mod won’t update any technologies, and you’ll have to handle gaining access to the recipes yourself. |
 
 Note that **if crating items/recipes already exist for the item name
 specified**, they are replaced by the new ones – but if you specified a
@@ -72,7 +71,7 @@ different technology to the original’s, you will need to clean that up. Consid
 using destroy_crate() described below to remove the item before you overwrite
 it.
 
-The equivalent deprecated function *deadlock_stacking.create()* used to ask for
+The equivalent deprecated function *deadlock_crating.create()* used to ask for
 an icon size parameter, but this is no longer necessary.
 
 deadlock_crating.destroy_crate()
@@ -186,7 +185,7 @@ about that.
 
 **Tech/migration.** DCM use tiers of technology 1-3 to unlock stacking/crating
 recipes and also the tiered machines themselves. You can specify these as the
-required tech to unlock your own stacked things if you like (see table below).
+required tech to unlock your own crates if you like (see table below).
 If you add your items to DSB or DCM technologies and then change them later, or
 remove anything that they provide, **you are responsible for your own
 migrations**. See DCM’s migrations folders for an example.
