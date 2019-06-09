@@ -1,11 +1,11 @@
 {
 	"name": "DeadlockCrating",
-	"version": "1.4.10",
+	"version": "1.5.0",
 	"title": "Deadlock's Crating Machine",
 	"author": "Deadlock989",
 	"contact": "",
     "homepage": "https://forums.factorio.com/viewtopic.php?f=94&t=57070",
 	"dependencies": ["base >= 0.17.35", "?ReStack", "?Regroup"],
-	"description": "Adds well-balanced packing and unpacking facilities to hugely boost belt throughput using crates.",
+	"description": "Pack resources into crates and unpack them where needed. Hugely boosts belt throughput, at a cost.",
 	"factorio_version": "0.17"
 }
