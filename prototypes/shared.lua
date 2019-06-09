@@ -63,10 +63,12 @@ end
 -- generate items and recipes for crated items
 DCM.CRATE_ORDER = 0
 function DCM.generate_crates(this_item, icon_size)
-    if icon_size and (icon_size ~= 32 and icon_size ~= 64 and icon_size ~= 128) then
-        log("ERROR: DCM asked to use icon_size that is not 32, 64 or 128")
-        return
-    else icon_size = DCM.icon_size end
+    if icon_size then
+        if (icon_size ~= 32 and icon_size ~= 64 and icon_size ~= 128) then
+            log("ERROR: DCM asked to use icon_size that is not 32, 64 or 128")
+            return
+        end
+    else icon_size = DCM.ITEM_ICON_SIZE end
     -- The crated item
     local base_item = data.raw.item[this_item]
     if not base_item then
@@ -105,6 +107,7 @@ function DCM.generate_crates(this_item, icon_size)
         for _,icon in pairs(base_item.icons) do
 			local temp_icon = table.deepcopy(icon)
             temp_icon.scale = 0.7 * (temp_icon.scale or 1)
+            if not temp_icon.icon_size then temp_icon.icon_size = base_item.icon_size end
             table.insert(icons, temp_icon)
         end
     else
