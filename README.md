@@ -138,7 +138,7 @@ Here is an example of creating a new numbered tier which creates a purple
 4-speed machine in tier 4:
 
 ~~~~
-deadlock_crating.create_tier({
+deadlock_crating.add_tier({
   tier = 4,
   colour = { r=0.75, g=0.0, b=0.75 },
   ingredients = { {"wet-socks",2}, {"old-bread",17} },
@@ -154,7 +154,7 @@ deadlock_crating.create_tier({
 And an example of a non-numbered tier:
 
 ~~~~
-deadlock_crating.create_tier({
+deadlock_crating.add_tier({
   tier = "alpha",
   colour = { r=0.75, g=0.75, b=0.75},
   ingredients = { {"iron-plate", 1000} },
