@@ -5,7 +5,7 @@
 	"author": "Deadlock989",
 	"contact": "",
     "homepage": "https://forums.factorio.com/viewtopic.php?f=94&t=57070",
-	"dependencies": ["base >= 0.17.35", "?ReStack", "?Regroup"],
+	"dependencies": ["base >= 0.17.35", "?ReStack"],
 	"description": "Pack resources into crates and unpack them where needed. Hugely boosts belt throughput, at a cost.",
 	"factorio_version": "0.17"
 }
