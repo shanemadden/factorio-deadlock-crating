@@ -85,39 +85,42 @@ function DCM.generate_crates(this_item, icon_size)
 		{
 			icon = "__DeadlockCrating__/graphics/icons/mipmaps/crate.png",
 			icon_size = DCM.ITEM_ICON_SIZE,
-			icon_mipmaps = 4,
+            icon_mipmaps = 4,
+            scale = 1, -- Force the base layer to be the reference scale
 		}
-	}
-    if base_item.icon then
-		-- table.insert(icons, {
-			-- icon = base_item.icon,
-			-- scale = 0.7 * 32 / base_item.icon_size,
-			-- icon_size = base_item.icon_size,
-			-- icon_mipmaps = base_item.icon_mipmaps,
-			-- tint = {0,0,0,0.75},
-			-- shift = {2, 2},
-		-- })
-		table.insert(icons, {
-			icon = base_item.icon,
-			scale = 0.7 * 32 / base_item.icon_size,
-			icon_size = base_item.icon_size,
-			icon_mipmaps = base_item.icon_mipmaps,
-		})
-    elseif base_item.icons then
+    }
+    -- Icons has priority over icon, check for icons definition first
+    if base_item.icons then
         for _,icon in pairs(base_item.icons) do
 			local temp_icon = table.deepcopy(icon)
             temp_icon.scale = 0.7 * (temp_icon.scale or 1)
             if not temp_icon.icon_size then temp_icon.icon_size = base_item.icon_size end
             table.insert(icons, temp_icon)
         end
+    -- If no icons field, look for icon definition
+    elseif base_item.icon then
+            -- table.insert(icons, {
+                -- icon = base_item.icon,
+                -- scale = 0.7 * 32 / base_item.icon_size,
+                -- icon_size = base_item.icon_size,
+                -- icon_mipmaps = base_item.icon_mipmaps,
+                -- tint = {0,0,0,0.75},
+                -- shift = {2, 2},
+            -- })
+            table.insert(icons, {
+                icon = base_item.icon,
+                scale = 0.7 * 64 / base_item.icon_size, -- Base layer is 64 pixels, need to ensure scaling of the crated item is correct for its size
+                icon_size = base_item.icon_size,
+                icon_mipmaps = base_item.icon_mipmaps,
+            })
     else
         log("ERROR: DCM asked to crate an item with no icon or icons properties ("..this_item..")")
         return
     end
     local packrecipeicons = table.deepcopy(icons)
     local unpackrecipeicons = table.deepcopy(icons)
-    table.insert(packrecipeicons, 2, { icon = "__DeadlockCrating__/graphics/icons/square/arrow-d-64.png", scale = 0.25, icon_size = 64, shift = {0, 8} } )
-    table.insert(unpackrecipeicons, 2, { icon = "__DeadlockCrating__/graphics/icons/square/arrow-u-64.png", scale = 0.25, icon_size = 64, shift = {0, -8} } )
+    table.insert(packrecipeicons, { icon = "__DeadlockCrating__/graphics/icons/square/arrow-d-64.png", scale = 0.5, icon_size = 64, shift = {0, 8} } ) -- These should be inserted at the top of the stack, not beneath the rescaled item
+    table.insert(unpackrecipeicons, { icon = "__DeadlockCrating__/graphics/icons/square/arrow-u-64.png", scale = 0.5, icon_size = 64, shift = {0, -8} } ) -- These should be inserted at the top of the stack, not beneath the rescaled item
     -- the item
     data:extend {
         -- the item
