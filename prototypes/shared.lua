@@ -82,17 +82,17 @@ function DCM.generate_crates(this_item, icon_size)
         return
     end
     local icons = {
-		{
-			icon = "__DeadlockCrating__/graphics/icons/mipmaps/crate.png",
-			icon_size = DCM.ITEM_ICON_SIZE,
+        {
+            icon = "__DeadlockCrating__/graphics/icons/mipmaps/crate.png",
+            icon_size = DCM.ITEM_ICON_SIZE,
             icon_mipmaps = 4,
             scale = 1, -- Force the base layer to be the reference scale
-		}
+        }
     }
     -- Icons has priority over icon, check for icons definition first
     if base_item.icons then
         for _,icon in pairs(base_item.icons) do
-			local temp_icon = table.deepcopy(icon)
+            local temp_icon = table.deepcopy(icon)
             temp_icon.scale = 0.7 * (temp_icon.scale or 1)
             if not temp_icon.icon_size then temp_icon.icon_size = base_item.icon_size end
             table.insert(icons, temp_icon)
@@ -550,8 +550,8 @@ function DCM.create_machine_item(tier, colour)
             subgroup = "production-machine",
             stack_size = 50,
             icons = {
-				{ icon = "__DeadlockCrating__/graphics/icons/mipmaps/crating-icon-base.png", icon_size = DCM.ITEM_ICON_SIZE, icon_mipmaps = 4 },
-				{ icon = "__DeadlockCrating__/graphics/icons/mipmaps/crating-icon-mask.png", icon_size = DCM.ITEM_ICON_SIZE, tint = colour, icon_mipmaps = 4 },
+                { icon = "__DeadlockCrating__/graphics/icons/mipmaps/crating-icon-base.png", icon_size = DCM.ITEM_ICON_SIZE, icon_mipmaps = 4 },
+                { icon = "__DeadlockCrating__/graphics/icons/mipmaps/crating-icon-mask.png", icon_size = DCM.ITEM_ICON_SIZE, tint = colour, icon_mipmaps = 4 },
             },
             icon_size = DCM.ITEM_ICON_SIZE,
             order = "z[crating-machine]-" .. order,

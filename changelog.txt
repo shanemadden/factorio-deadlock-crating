@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.6.1
+Date: 26. 07. 2020
+  Bugfixes:
+    - Use icons property instead of icon when both are present and fix icon scaling, courtesy of kirazy on GitHub
+---------------------------------------------------------------------------------------------------
 Version: 1.6.0
 Date: 23. 04. 2019
   Changes:
