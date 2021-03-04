@@ -86,32 +86,34 @@ function DCM.generate_crates(this_item, icon_size)
             icon = "__DeadlockCrating__/graphics/icons/mipmaps/crate.png",
             icon_size = DCM.ITEM_ICON_SIZE,
             icon_mipmaps = 4,
-            scale = 1, -- Force the base layer to be the reference scale
+            scale = 32 / DCM.ITEM_ICON_SIZE, -- Force the base layer to be the reference scale
         }
     }
     -- Icons has priority over icon, check for icons definition first
     if base_item.icons then
-        for _,icon in pairs(base_item.icons) do
-            local temp_icon = table.deepcopy(icon)
-            temp_icon.scale = 0.7 * (temp_icon.scale or 1)
-            if not temp_icon.icon_size then temp_icon.icon_size = base_item.icon_size end
-            table.insert(icons, temp_icon)
+        for _, icon in pairs(base_item.icons) do
+            table.insert(icons, {
+                icon = icon.icon,
+                icon_size = icon.icon_size and icon.icon_size or base_item.icon_size,
+                icon_mipmaps = icon.icon_mipmaps and icon.icon_mipmaps or base_item.icon_mipmaps,
+                scale = 0.7 * (icon.scale or (32 / (icon.icon_size and icon.icon_size or base_item.icon_size))),
+                shift = {
+                    (icon.shift and (icon.shift[1] or icon.shift.x) or 0) * 0.7 * 32 / (icon.icon_size and icon.icon_size or base_item.icon_size),
+                    (icon.shift and (icon.shift[2] or icon.shift.y) or 0) * 0.7 * 32 / (icon.icon_size and icon.icon_size or base_item.icon_size),
+                }
+            })
         end
     -- If no icons field, look for icon definition
     elseif base_item.icon then
-            -- table.insert(icons, {
-                -- icon = base_item.icon,
-                -- scale = 0.7 * 32 / base_item.icon_size,
-                -- icon_size = base_item.icon_size,
-                -- icon_mipmaps = base_item.icon_mipmaps,
-                -- tint = {0,0,0,0.75},
-                -- shift = {2, 2},
-            -- })
             table.insert(icons, {
                 icon = base_item.icon,
-                scale = 0.7 * 64 / base_item.icon_size, -- Base layer is 64 pixels, need to ensure scaling of the crated item is correct for its size
                 icon_size = base_item.icon_size,
                 icon_mipmaps = base_item.icon_mipmaps,
+                scale = 0.7 * 32 / base_item.icon_size,
+                shift = {
+                    (base_item.shift and (base_item.shift[1] or base_item.shift.x) or 0) * 0.7 * 32 / base_item.icon_size,
+                    (base_item.shift and (base_item.shift[2] or base_item.shift.y) or 0) * 0.7 * 32 / base_item.icon_size,
+                }
             })
     else
         log("ERROR: DCM asked to crate an item with no icon or icons properties ("..this_item..")")
@@ -119,8 +121,8 @@ function DCM.generate_crates(this_item, icon_size)
     end
     local packrecipeicons = table.deepcopy(icons)
     local unpackrecipeicons = table.deepcopy(icons)
-    table.insert(packrecipeicons, { icon = "__DeadlockCrating__/graphics/icons/square/arrow-d-64.png", scale = 0.5, icon_size = 64, shift = {0, 8} } ) -- These should be inserted at the top of the stack, not beneath the rescaled item
-    table.insert(unpackrecipeicons, { icon = "__DeadlockCrating__/graphics/icons/square/arrow-u-64.png", scale = 0.5, icon_size = 64, shift = {0, -8} } ) -- These should be inserted at the top of the stack, not beneath the rescaled item
+    table.insert(packrecipeicons, { icon = "__DeadlockCrating__/graphics/icons/square/arrow-d-64.png", scale = 0.25, icon_size = 64, shift = {0, 8} } )
+    table.insert(unpackrecipeicons, { icon = "__DeadlockCrating__/graphics/icons/square/arrow-u-64.png", scale = 0.25, icon_size = 64, shift = {0, -8} } )
     -- the item
     data:extend {
         -- the item
