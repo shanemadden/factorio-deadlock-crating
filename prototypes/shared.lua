@@ -107,9 +107,9 @@ function DCM.generate_crates(this_item, icon_size)
     elseif base_item.icon then
             table.insert(icons, {
                 icon = base_item.icon,
-                scale = 0.7 * 32 / base_item.icon_size,
                 icon_size = base_item.icon_size,
                 icon_mipmaps = base_item.icon_mipmaps,
+                scale = 0.7 * 32 / base_item.icon_size,
                 shift = {
                     (base_item.shift and (base_item.shift[1] or base_item.shift.x) or 0) * 0.7 * 32 / base_item.icon_size,
                     (base_item.shift and (base_item.shift[2] or base_item.shift.y) or 0) * 0.7 * 32 / base_item.icon_size,
