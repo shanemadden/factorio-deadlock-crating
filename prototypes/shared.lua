@@ -17,7 +17,7 @@ DCM.VANILLA_ICON_SIZE = 32
 DCM.STACK_DIVIDER = settings.startup["crate_stack_ratio"].value
 
 -- how many tiers of tech?
-DCM.TIERS = settings.startup["crating_technology_tiers"].value
+DCM.TIERS = 3
 
 -- should vanilla item crating recepies be generated
 DCM.VANILLA_GENERATION = settings.startup["vanilla_generation"].value

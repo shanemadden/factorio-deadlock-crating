@@ -16,14 +16,14 @@ data:extend(
         minimum_value = 1,
         maximum_value = 100,
     },
-    {
-        type = "int-setting",
-        name = "crating_technology_tiers",
-        setting_type = "startup",
-        default_value = 3,
-        minimum_value = 3,
-        maximum_value = 3,
-    },
+    -- {
+    --     type = "int-setting",
+    --     name = "crating_technology_tiers",
+    --     setting_type = "startup",
+    --     default_value = 1,
+    --     minimum_value = 3,
+    --     maximum_value = 10,
+    -- },
     {
         type = "bool-setting",
         name = "vanilla_generation",
