@@ -21,8 +21,8 @@ data:extend(
         name = "crating_technology_tiers",
         setting_type = "startup",
         default_value = 3,
-        minimum_value = 1,
-        maximum_value = 10,
+        minimum_value = 3,
+        maximum_value = 3,
     },
     {
         type = "bool-setting",
