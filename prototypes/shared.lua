@@ -5,7 +5,7 @@ local DCM = {}
 DCM.LOGGING = false
 
 -- default tier 1 belt speed in items/s. we assume other belt tiers are a multiple of this. if not, you'll have to tweak the machine yourself
-DCM.BELT_SPEED = 15
+DCM.BELT_SPEED = settings.startup["craft_belt_ratio"].value
 
 -- size of machine icons and crate background
 DCM.ITEM_ICON_SIZE = 64
@@ -14,12 +14,15 @@ DCM.ITEM_ICON_SIZE = 64
 DCM.VANILLA_ICON_SIZE = 32
 
 -- how many crates to use up a whole vanilla stack
-DCM.STACK_DIVIDER = 5
+DCM.STACK_DIVIDER = settings.startup["crate_stack_ratio"].value
 
 -- how many tiers of tech?
 DCM.TIERS = 3
 
--- which vanilla items are automatically crated, in which tier
+-- should vanilla item crating recepies be generated
+DCM.VANILLA_GENERATION = settings.startup["vanilla_generation"].value
+
+-- which vanilla items are automatically crated, in which tier if setting is enabled
 DCM.VANILLA_ITEM_TIERS = {
     [1] = { "wood", "iron-ore", "copper-ore", "stone", "coal", "iron-plate", "copper-plate", "steel-plate", "stone-brick" },
     [2] = { "copper-cable", "iron-gear-wheel", "iron-stick", "sulfur", "plastic-bar", "solid-fuel", "electronic-circuit", "advanced-circuit" },
@@ -79,6 +82,11 @@ function DCM.generate_crates(this_item, icon_size)
     -- stop stack multiplier mods from breaking everything
     if items_per_crate > 65535 then
         log("ABORT: DCM encountered a recipe with insane stack size ("..this_item..")")
+        return
+    end
+    -- cant have less than 1 item in a crate
+    if items_per_crate < 1 then
+        log("ABORT: DCM encountered an item with stack size of 1 ("..this_item..")")
         return
     end
     local icons = {
